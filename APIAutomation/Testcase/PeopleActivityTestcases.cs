@@ -23,9 +23,13 @@ namespace APIAutomation.Testcase
         [Fact]
         public void GetActivityBasedonKey()
         {
-            RestClient client = new RestClient("http://www.boredapi.com/api/activity");
-            RestRequest request = new RestRequest("?key=5881028",Method.Get);   
-            //request.AddParameter("key", "1017771", ParameterType.UrlSegment);
+            RestClient client = new RestClient("http://www.boredapi.com/api/activity/");
+            
+            RestRequest request = new RestRequest();
+            //RestRequest request = new RestRequest("?key=5881028", Method.Get);
+            request.Method = Method.Get;
+            request.AddParameter("key", "5881028");
+            
 
             RestResponse response = client.Execute(request);
             var BoredResponse = JsonConvert.DeserializeObject<Bored>(response.Content);
